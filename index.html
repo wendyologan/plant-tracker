@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Keeper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Plant Keeper</h1>
+    <h2>Track your beloved houseplants</h2>
+  </header>
+
+  <main>
+    <section id="plant-collection">
+      <div class="button-container">
+        <button id="toggle-form-btn">Add New Plant</button>
+        <button id="view-graveyard-btn">View Plant Graveyard</button>
+      </div>
+
+      <!-- New Plant Form -->
+      <form id="plant-form" style="display: none;">
+        <button type="button" id="hide-form-btn" class="minimize-btn">-</button>
+
+        <!-- Plant Name -->
+        <label for="plant-name">Plant Name:</label>
+        <input type="text" id="plant-name" placeholder="Enter plant name">
+        <div id="error-message">Plant name is required.</div>
+        <br>
+        <!-- Plant Nickname -->
+        <label for="plant-nickname">Nickname:</label>
+        <input type="text" id="plant-nickname" placeholder="Enter nickname">
+        <br>
+        <!-- Plant Image -->
+        <div id="input-container">
+          <label for="plant-image">Plant Image:</label>
+          <input type="file" id="plant-image" name="plant-image" />
+          <button type="button" id="save-plant-btn">Save Plant</button>
+        </div>
+        <div id="preview-container">
+          <img id="image-preview" src="" alt="Image preview" />
+        </div>      
+      </form>
+
+      <!-- Plant Table -->
+      <table id="plant-table">
+        <thead>
+          <tr>
+            <th id="image-column-header">Image</th>
+            <th id="plant-column-header">Plant</th>
+            <th id="nickname-column-header">Nickname</th>
+            <th id="actions-column-header">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="plant-list">
+          <!-- Plant rows will be populated here dynamically -->
+        </tbody>
+      </table>
+    </section>
+  <script src="script.js"></script>
+</body>
+</html>
