@@ -5,7 +5,7 @@
 body {
   font-family: 'Ubuntu', sans-serif;
   background-color: #D1E2B3; /* Ensure background color matches homepage */
-  margin: 0;
+  margin-inline: auto;
   padding: 0;
 }
 
