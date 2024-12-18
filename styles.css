@@ -208,6 +208,7 @@ form input[type="file"] {
 #image-column-header {
   width: 20%;
   font-family: 'Ubuntu Condensed', sans-serif;
+  margin-inline: auto;
   font-size: 24px;
   font-weight: bold;
   color: #425722;
