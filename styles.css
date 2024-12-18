@@ -83,6 +83,11 @@ form input {
   font-size: 16px;
 }
 
+#plant-form {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 #save-plant-btn {
   background-color: #A6D77A;
   color: #425722;
