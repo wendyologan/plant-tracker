@@ -38,7 +38,7 @@ header h2 {
   margin-top: 1rem;
 }
 
-#toggle-form-btn, #view-graveyard-btn {
+button #toggle-form-btn, #view-graveyard-btn {
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
   font-size: 16px;
