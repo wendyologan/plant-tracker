@@ -69,8 +69,12 @@ form {
 }
 
 form label {
+  display: inline-block;
+  margin-left: 5%;
+  width: 20%;
   font-family: 'Ubuntu', sans-serif;
   color: #425722;
+
 }
 
 form input {
