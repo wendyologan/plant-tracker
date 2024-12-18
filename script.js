@@ -115,7 +115,14 @@ savePlantButton.addEventListener("click", () => {
 
 // Render plant list
 function renderPlantList() {
-  plantList.innerHTML = "";
+  const plantList = document.getElementById("plant-list");
+  
+  if (!plantList) {
+    console.error('Element with id "plant-list" not found!');
+    return;
+  }
+
+  plantList.innerHTML = ""; // Clear the list before rendering new items
 
   plants.forEach((plant, index) => {
     const row = document.createElement("tr");
