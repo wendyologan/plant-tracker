@@ -196,6 +196,24 @@ function renderPlantList() {
   });
 }
 
+function moveToGraveyard(index) {
+  const confirmed = confirm("Are you sure you want to move this plant to the graveyard?");
+  if (confirmed) {
+    // Get graveyard data from local storage
+    const graveyardPlants = JSON.parse(localStorage.getItem("graveyard")) || [];
+    
+    // Add the selected plant to the graveyard
+    graveyardPlants.push(plants[index]);
+    localStorage.setItem("graveyard", JSON.stringify(graveyardPlants));
+
+    // Remove the plant from the main list
+    plants.splice(index, 1);
+    localStorage.setItem("plants", JSON.stringify(plants)); // Update local storage
+
+    renderPlantList(); // Re-render main plant list
+  }
+}
+
 // Function to save to localStorage
 function saveToLocalStorage() {
   localStorage.setItem("plants", JSON.stringify(plants));
