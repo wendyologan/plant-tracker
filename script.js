@@ -9,7 +9,7 @@ const plantNicknameInput = document.getElementById("plant-nickname");
 const plantImageInput = document.getElementById("plant-image");
 const savePlantButton = document.getElementById("save-plant-btn");
 const plantList = document.getElementById("plant-list");
-const graveyardList = document.getElementById("graveyard-list"); // List to display graveyard plants
+const graveyardList = document.getElementById("graveyard-list");
 const errorMessage = document.getElementById("error-message");
 const imagePreview = document.getElementById("image-preview");
 
@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error('Element with id "toggle-form-btn" not found!');
   }
+  renderPlantList();
+  renderGraveyardList();
 });
 
 // Image preview logic
@@ -113,15 +115,9 @@ function renderPlantList() {
 
     const actionsCell = document.createElement("td");
     actionsCell.innerHTML = `
-      <button class="edit-btn" onclick="editPlant(${index})">
-        <img src="edit-icon.png" alt="Edit" style="width: 20px; height: 20px;">
-      </button>
-      <button class="delete-btn" onclick="deletePlant(${index})">
-        <img src="delete-icon.png" alt="Delete" style="width: 20px; height: 20px;">
-      </button>
-      <button class="graveyard-btn" onclick="moveToGraveyard(${index})">
-        <img src="graveyard-icon.png" alt="Graveyard" style="width: 20px; height: 20px;">
-      </button>
+      <button class="edit-btn" onclick="editPlant(${index})">✏️ Edit</button>
+      <button class="delete-btn" onclick="deletePlant(${index})">🗑️ Delete</button>
+      <button class="graveyard-btn" onclick="moveToGraveyard(${index})">⚰️ Graveyard</button>
     `;
 
     row.appendChild(imageCell);
@@ -134,20 +130,11 @@ function renderPlantList() {
 }
 
 function renderGraveyardList() {
-  document.addEventListener("DOMContentLoaded", () => {
-    const graveyardList = document.getElementById("graveyardList");
-    
-    if (graveyardList) {
-      console.log("Graveyard List Found");
-      // You can now manipulate the graveyardList element, for example:
-      graveyardList.innerHTML = "<tr><td>Sample Plant</td><td>Sample Nickname</td><td>Sample Image</td></tr>";
-    } else {
-      console.error("graveyardList element not found");
-    }
-  });
-  
-    
-  graveyardPlants.forEach((plant, index) => {
+  if (!graveyardList) return;
+
+  graveyardList.innerHTML = ""; 
+
+  graveyardPlants.forEach((plant) => {
     const row = document.createElement("tr");
 
     const imageCell = document.createElement("td");
@@ -197,26 +184,15 @@ function deletePlant(index) {
 function moveToGraveyard(index) {
   const confirmed = confirm("Are you sure you want to move this plant to the graveyard?");
   if (confirmed) {
-    // Get graveyard data from local storage
-    const graveyardPlants = JSON.parse(localStorage.getItem("graveyard")) || [];
-    
-    // Add the selected plant to the graveyard
     graveyardPlants.push(plants[index]);
-    localStorage.setItem("graveyard", JSON.stringify(graveyardPlants));
-
-    // Remove the plant from the main list
     plants.splice(index, 1);
-    localStorage.setItem("plants", JSON.stringify(plants)); // Update local storage
-
-    renderPlantList(); // Re-render main plant list
+    saveToLocalStorage();
+    renderPlantList();
+    renderGraveyardList();
   }
 }
-
 
 function saveToLocalStorage() {
   localStorage.setItem("plants", JSON.stringify(plants));
   localStorage.setItem("graveyardPlants", JSON.stringify(graveyardPlants));
 }
-
-renderPlantList();
-renderGraveyardList();
