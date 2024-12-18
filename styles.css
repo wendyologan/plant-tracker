@@ -61,17 +61,6 @@ header h2 {
   z-index: 10; 
 }
 
-button {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 #toggle-form-btn, 
 #view-graveyard-btn {
   background-color: #98C16F;
