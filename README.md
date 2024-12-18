@@ -1,6 +1,6 @@
 # 🌱 Plant Keeper
 
-**Live Demo**: [View the Plant Keeper](https://yourusername.github.io/plant-tracker/)
+**Live Demo**: [View the Plant Keeper](https://wendyologan.github.io/plant-tracker/)
 
 ## 📖 **About the Project**
 Plant Keeper is a simple and interactive web app that allows users to track their beloved houseplants. With this app, users can add plants, edit details, and keep track of their status. Plants that "pass away" can be moved to the **Plant Graveyard**, giving them a proper digital send-off.
