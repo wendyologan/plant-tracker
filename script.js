@@ -18,17 +18,20 @@ let editIndex = null;
 
 // Toggles the visibility of the form
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleFormBtn = document.getElementById("toggle-form-btn");
+  // Check the current page
+  if (window.location.pathname.includes("index.html")) {
+    const toggleFormBtn = document.getElementById("toggle-form-btn");
 
-  // Toggle visibility of the form when toggleFormBtn is clicked
-  if (toggleFormBtn) {
-    toggleFormBtn.addEventListener("click", () => {
-      plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
-    });
-  } else {
-    console.warn('Element with id "toggle-form-btn" not found!');
+    // Only add event listener if the toggle button exists
+    if (toggleFormBtn) {
+      toggleFormBtn.addEventListener("click", () => {
+        plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
+      });
+    } else {
+      console.warn('Element with id "toggle-form-btn" not found!');
+    }
   }
-
+  
   // Image preview logic
   if (plantImageInput) {
     plantImageInput.addEventListener('change', function(event) {
