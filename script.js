@@ -15,7 +15,7 @@ const imagePreview = document.getElementById("image-preview");
 let isEditing = false;
 let editIndex = null;
 
-// Check if graveyard list exists
+// Ensure graveyard list exists and render it
 if (graveyardList) {
   renderGraveyardList();
 } else {
@@ -162,6 +162,6 @@ function saveToLocalStorage() {
   localStorage.setItem("graveyardPlants", JSON.stringify(graveyardPlants));
 }
 
-// Render initial plant list
+// Initial render for both the plant list and the graveyard list
 renderPlantList();
 renderGraveyardList();
