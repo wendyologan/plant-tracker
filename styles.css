@@ -93,7 +93,7 @@ form input {
   color: #425722;
 }
 
-.minimize-btn {
+#hide-form-btn {
   right: 8%;
   position: absolute;
   background-color: #D3DCC9;
