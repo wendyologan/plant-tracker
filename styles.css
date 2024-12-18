@@ -71,12 +71,6 @@ button {
   z-index: 10; 
 }
 
-#toggle-form-btn, 
-#view-graveyard-btn {
-  background-color: #98C16F;
-  color: #425722;
-}
-
 form {
   background-color: #F9F9F9;
   border: 1px solid #ddd;
