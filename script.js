@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Toggles the visibility of the form
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleFormBtn = document.getElementById("hide-form-btn");
-  if (toggleFormBtn) {
-    toggleFormBtn.addEventListener("click", () => {
+  const hideFormBtn = document.getElementById("hide-form-btn");
+  if (hideFormBtn) {
+    hideFormBtn.addEventListener("click", () => {
       plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
     });
   } else {
