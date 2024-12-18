@@ -88,8 +88,7 @@ form input {
 #graveyard-table {
   margin-top: 1rem;
   width: 95%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
+  horizontal-align: middle;
   border-collapse: separate;
   border-spacing: 0 10px;
   background-color: #EBF6D8;
