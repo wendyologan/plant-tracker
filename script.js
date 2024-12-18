@@ -50,7 +50,7 @@ function renderGraveyardList() {
 
 // Event listener for DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleFormBtn = document.getElementById("hide-form-btn");
+  const toggleFormBtn = document.getElementById("toggle-form-btn");
   
   // Check if the form toggle button exists
   if (toggleFormBtn) {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
     });
   } else {
-    console.warn('Element with id "hide-form-btn" not found!');
+    console.warn('Element with id "toggle-form-btn" not found!');
   }
 
   // Initial render for both the plant list and the graveyard list
@@ -68,13 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Toggles the visibility of the form
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleFormBtn = document.getElementById("toggle-form-btn");
+  const toggleFormBtn = document.getElementById("hide-form-btn");
   if (toggleFormBtn) {
     toggleFormBtn.addEventListener("click", () => {
       plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
     });
   } else {
-    console.error('Element with id "toggle-form-btn" not found!');
+    console.error('Element with id "hide-form-btn" not found!');
   }
 });
 
