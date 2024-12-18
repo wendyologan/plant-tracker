@@ -9,7 +9,12 @@ const plantNicknameInput = document.getElementById("plant-nickname");
 const plantImageInput = document.getElementById("plant-image");
 const savePlantButton = document.getElementById("save-plant-btn");
 const plantList = document.getElementById("plant-list");
-const graveyardList = document.getElementById("graveyard-list"); // List to display graveyard plants
+const graveyardList = document.getElementById("graveyard-list");
+if (graveyardList) {
+  renderGraveyardList();
+} else {
+  console.warn("graveyard-list not found in index.html");
+}
 const errorMessage = document.getElementById("error-message");
 const imagePreview = document.getElementById("image-preview");
 
@@ -24,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
     });
   } else {
-    console.error('Element with id "toggle-form-btn" not found!');
+    console.warn('Element with id "toggle-form-btn" not found!');
   }
 });
 
