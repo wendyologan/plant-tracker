@@ -66,6 +66,18 @@ document.addEventListener("DOMContentLoaded", () => {
   renderGraveyardList();
 });
 
+// Toggles the visibility of the form
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleFormBtn = document.getElementById("toggle-form-btn");
+  if (toggleFormBtn) {
+    toggleFormBtn.addEventListener("click", () => {
+      plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
+    });
+  } else {
+    console.error('Element with id "toggle-form-btn" not found!');
+  }
+});
+
 // Image preview logic
 document.addEventListener("DOMContentLoaded", () => {
   const plantImageInput = document.getElementById("plant-image");
