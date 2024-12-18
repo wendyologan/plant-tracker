@@ -38,6 +38,29 @@ header h2 {
   margin-top: 1rem;
 }
 
+
+#save-plant-btn {
+  background-color: #A6D77A;
+  color: #425722;
+}
+
+#hide-form-btn {
+  right: 8%;
+  position: absolute;
+  background-color: #D3DCC9;
+  color: #425722;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  z-index: 10; 
+}
+
 button {
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
@@ -86,28 +109,6 @@ form input {
 #plant-form {
   margin-left: 5%;
   margin-right: 5%;
-}
-
-#save-plant-btn {
-  background-color: #A6D77A;
-  color: #425722;
-}
-
-#hide-form-btn {
-  right: 8%;
-  position: absolute;
-  background-color: #D3DCC9;
-  color: #425722;
-  font-size: 20px;
-  width: 30px;
-  height: 30px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border: none;
-  z-index: 10; 
 }
 
 #plant-table, 
