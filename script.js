@@ -33,12 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-  // Image preview logic
-  document.addEventListener("DOMContentLoaded", () => {
-  // All the code that interacts with DOM elements
-
+// Image preview logic
+document.addEventListener("DOMContentLoaded", () => {
   // Now safely access the plantImageInput element
   const plantImageInput = document.getElementById("plant-image");
+  const imagePreview = document.getElementById("image-preview");
+
   if (plantImageInput) {
     plantImageInput.addEventListener('change', function(event) {
       const file = event.target.files[0];
@@ -57,20 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } else {
     console.error('Element with id "plant-image" not found');
-  }
-});
-  const file = event.target.files[0];
-  const fileReader = new FileReader();
-
-  if (file) {
-    fileReader.onload = function(e) {
-      imagePreview.style.display = 'block';
-      imagePreview.src = e.target.result;
-    };
-    fileReader.readAsDataURL(file);
-  } else {
-    imagePreview.style.display = 'none';
-    imagePreview.src = '';
   }
 });
 
