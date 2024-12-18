@@ -32,6 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.warn('Element with id "toggle-form-btn" not found!');
   }
+
+  // Initial render after DOM is fully loaded
+  renderPlantList();
+  renderGraveyardList();
 });
 
 // Event listener for image input to show preview
@@ -160,3 +164,4 @@ function saveToLocalStorage() {
 
 // Render initial plant list
 renderPlantList();
+renderGraveyardList();
