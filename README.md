@@ -42,3 +42,7 @@ If you'd like to run the project locally:
 1. Clone the repository:  
    ```bash
    git clone https://github.com/yourusername/plant-tracker.git
+
+
+If you like this project, give it a ⭐️ on GitHub!
+Happy Plant Tracking! 🌿
