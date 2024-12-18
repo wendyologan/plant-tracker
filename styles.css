@@ -79,7 +79,7 @@ button {
 #save-plant-btn {
   background-color: #A6D77A;
   color: #425722;
-  vertical-align: middle;
+  margin-top: .2rem;
 }
 
 #hide-form-btn {
