@@ -94,9 +94,15 @@ form label {
 }
 
 form input {
+  display: inline-block;
+  width: 60%;
+  padding: 0.5rem;
+  border-radius: 5px;
   border: 1px solid #ddd;
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
+  margin-bottom: 0.25rem; /* Adjusted margin */
+  margin-right: 5%;
 }
 
 #plant-form {
