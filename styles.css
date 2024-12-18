@@ -93,6 +93,23 @@ form input {
   color: #425722;
 }
 
+.minimize-btn {
+  right: 8%;
+  position: absolute;
+  background-color: #D3DCC9;
+  color: #425722;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  z-index: 10; 
+}
+
 #plant-table, 
 #graveyard-table {
   margin-inline: auto !important;
