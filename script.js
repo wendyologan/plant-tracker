@@ -65,7 +65,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Save plant logic
-savePlantButton.addEventListener("click", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  // Now it's safe to add the event listener
+  const savePlantButton = document.getElementById("save-plant-btn");
+
+  if (savePlantButton) {
+    savePlantButton.addEventListener("click", () => {
+      // your save plant logic here
+    });
+  } else {
+    console.error('save-plant-btn element not found!');
+  }
+});
   const plantName = plantNameInput.value.trim();
   const plantNickname = plantNicknameInput.value.trim();
   const plantImage = plantImageInput.files[0];
