@@ -10,20 +10,17 @@ const plantImageInput = document.getElementById("plant-image");
 const savePlantButton = document.getElementById("save-plant-btn");
 const plantList = document.getElementById("plant-list");
 const graveyardList = document.getElementById("graveyard-list");
-if (graveyardList) {
-  renderGraveyardList();
-} else {
-  console.warn("graveyard-list not found in index.html");
-}
 const errorMessage = document.getElementById("error-message");
 const imagePreview = document.getElementById("image-preview");
 
-let isEditing = false; 
+let isEditing = false;
 let editIndex = null;
 
 // Toggles the visibility of the form
 document.addEventListener("DOMContentLoaded", () => {
   const toggleFormBtn = document.getElementById("toggle-form-btn");
+
+  // Toggle visibility of the form when toggleFormBtn is clicked
   if (toggleFormBtn) {
     toggleFormBtn.addEventListener("click", () => {
       plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
@@ -31,14 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.warn('Element with id "toggle-form-btn" not found!');
   }
-});
 
-// Image preview logic
-document.addEventListener("DOMContentLoaded", () => {
-  // Now safely access the plantImageInput element
-  const plantImageInput = document.getElementById("plant-image");
-  const imagePreview = document.getElementById("image-preview");
-
+  // Image preview logic
   if (plantImageInput) {
     plantImageInput.addEventListener('change', function(event) {
       const file = event.target.files[0];
@@ -58,8 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error('Element with id "plant-image" not found');
   }
+
+  // Render graveyard list on page load
+  if (graveyardList) {
+    renderGraveyardList();
+  } else {
+    console.warn("graveyard-list not found in index.html");
+  }
+
+  // Render plant list on page load
+  renderPlantList();
 });
 
+// Save plant logic
 savePlantButton.addEventListener("click", () => {
   const plantName = plantNameInput.value.trim();
   const plantNickname = plantNicknameInput.value.trim();
@@ -68,14 +70,14 @@ savePlantButton.addEventListener("click", () => {
   if (!plantName) {
     plantNameInput.classList.add("error");
     errorMessage.style.display = "block";
-    return; 
+    return;
   }
 
   const savePlant = (base64Image) => {
     const plant = {
       name: plantName,
       nickname: plantNickname,
-      image: base64Image || (isEditing ? plants[editIndex].image : null)
+      image: base64Image || (isEditing ? plants[editIndex].image : null),
     };
 
     if (isEditing) {
@@ -100,16 +102,17 @@ savePlantButton.addEventListener("click", () => {
   if (plantImage) {
     const reader = new FileReader();
     reader.onload = function(event) {
-      savePlant(event.target.result); 
+      savePlant(event.target.result);
     };
     reader.readAsDataURL(plantImage);
   } else {
-    savePlant(); 
+    savePlant();
   }
 });
 
+// Render plant list
 function renderPlantList() {
-  plantList.innerHTML = ""; 
+  plantList.innerHTML = "";
 
   plants.forEach((plant, index) => {
     const row = document.createElement("tr");
@@ -148,9 +151,10 @@ function renderPlantList() {
   });
 }
 
+// Render graveyard list
 function renderGraveyardList() {
   const graveyardList = document.getElementById("graveyard-list");
-  
+
   if (graveyardList) {
     graveyardList.innerHTML = ""; // Clear previous contents before rendering
 
@@ -180,6 +184,7 @@ function renderGraveyardList() {
   }
 }
 
+// Edit a plant
 function editPlant(index) {
   const plant = plants[index];
 
@@ -195,6 +200,7 @@ function editPlant(index) {
   savePlantButton.textContent = "Update Plant";
 }
 
+// Delete a plant
 function deletePlant(index) {
   const confirmed = confirm("Are you sure you want to delete this plant? This cannot be undone.");
   if (confirmed) {
@@ -204,14 +210,12 @@ function deletePlant(index) {
   }
 }
 
+// Move a plant to the graveyard
 function moveToGraveyard(index) {
   const confirmed = confirm("Are you sure you want to move this plant to the graveyard?");
   if (confirmed) {
-    // Add the selected plant to the graveyard
     graveyardPlants.push(plants[index]);
     saveToLocalStorage();
-
-    // Remove the plant from the main list
     plants.splice(index, 1);
     saveToLocalStorage();
 
@@ -220,11 +224,8 @@ function moveToGraveyard(index) {
   }
 }
 
+// Save to localStorage
 function saveToLocalStorage() {
   localStorage.setItem("plants", JSON.stringify(plants));
   localStorage.setItem("graveyardPlants", JSON.stringify(graveyardPlants));
 }
-
-// Initial render on page load
-renderPlantList();
-renderGraveyardList();
