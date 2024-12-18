@@ -1,4 +1,7 @@
-// DOM elements
+// Plant collection array to store plant objects
+let plants = JSON.parse(localStorage.getItem("plants")) || [];
+let graveyardPlants = JSON.parse(localStorage.getItem("graveyardPlants")) || [];
+
 const plantForm = document.getElementById("plant-form");
 const plantNameInput = document.getElementById("plant-name");
 const plantNicknameInput = document.getElementById("plant-nickname");
@@ -9,10 +12,55 @@ const graveyardList = document.getElementById("graveyard-list");
 const errorMessage = document.getElementById("error-message");
 const imagePreview = document.getElementById("image-preview");
 
-let isEditing = false; 
+let isEditing = false;
 let editIndex = null;
 
-// Conditional logic for saving the plant
+// Check if graveyard list exists
+if (graveyardList) {
+  renderGraveyardList();
+} else {
+  console.warn("graveyard-list not found in index.html");
+}
+
+// Event listener for the form toggle button
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleFormBtn = document.getElementById("toggle-form-btn");
+  if (toggleFormBtn) {
+    toggleFormBtn.addEventListener("click", () => {
+      plantForm.style.display = plantForm.style.display === "none" ? "block" : "none";
+    });
+  } else {
+    console.warn('Element with id "toggle-form-btn" not found!');
+  }
+});
+
+// Event listener for image input to show preview
+document.addEventListener("DOMContentLoaded", () => {
+  const plantImageInput = document.getElementById("plant-image");
+  const imagePreview = document.getElementById("image-preview");
+
+  if (plantImageInput) {
+    plantImageInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const fileReader = new FileReader();
+
+      if (file) {
+        fileReader.onload = function(e) {
+          imagePreview.style.display = 'block';
+          imagePreview.src = e.target.result;
+        };
+        fileReader.readAsDataURL(file);
+      } else {
+        imagePreview.style.display = 'none';
+        imagePreview.src = '';
+      }
+    });
+  } else {
+    console.error('Element with id "plant-image" not found');
+  }
+});
+
+// Event listener for save button (only for the plant page, not graveyard)
 if (savePlantButton) {
   savePlantButton.addEventListener("click", () => {
     const plantName = plantNameInput.value.trim();
@@ -22,7 +70,7 @@ if (savePlantButton) {
     if (!plantName) {
       plantNameInput.classList.add("error");
       errorMessage.style.display = "block";
-      return; // This is correct as it's inside the event listener function
+      return; // This return is valid as it's inside the event listener function
     }
 
     const savePlant = (base64Image) => {
@@ -61,30 +109,11 @@ if (savePlantButton) {
       savePlant(); 
     }
   });
-} else {
-  console.log("Save plant button not found on graveyard page");
 }
 
-// Image preview logic (this part remains the same for both pages)
-plantImageInput.addEventListener('change', function(event) {
-  const file = event.target.files[0];
-  const fileReader = new FileReader();
-
-  if (file) {
-    fileReader.onload = function(e) {
-      imagePreview.style.display = 'block';
-      imagePreview.src = e.target.result;
-    };
-    fileReader.readAsDataURL(file);
-  } else {
-    imagePreview.style.display = 'none';
-    imagePreview.src = '';
-  }
-});
-
-// Render plant list and graveyard list logic (unchanged)
+// Function to render the plant list
 function renderPlantList() {
-  plantList.innerHTML = ""; 
+  plantList.innerHTML = "";
 
   plants.forEach((plant, index) => {
     const row = document.createElement("tr");
@@ -123,83 +152,11 @@ function renderPlantList() {
   });
 }
 
-function renderGraveyardList() {
-  const graveyardList = document.getElementById("graveyard-list");
-  
-  if (graveyardList) {
-    graveyardList.innerHTML = ""; // Clear previous contents before rendering
-
-    graveyardPlants.forEach((plant, index) => {
-      const row = document.createElement("tr");
-
-      const imageCell = document.createElement("td");
-      const plantImage = plant.image
-        ? `<img src="${plant.image}" alt="Plant Image" class="plant-image" style="width: 60px; height: 60px; object-fit: cover;">`
-        : `<span class="placeholder">No Image</span>`;
-      imageCell.innerHTML = plantImage;
-
-      const nameCell = document.createElement("td");
-      nameCell.textContent = plant.name;
-
-      const nicknameCell = document.createElement("td");
-      nicknameCell.textContent = plant.nickname || "N/A";
-
-      row.appendChild(imageCell);
-      row.appendChild(nameCell);
-      row.appendChild(nicknameCell);
-
-      graveyardList.appendChild(row);
-    });
-  } else {
-    console.error("graveyardList element not found");
-  }
-}
-
-function editPlant(index) {
-  const plant = plants[index];
-
-  plantNameInput.value = plant.name;
-  plantNicknameInput.value = plant.nickname;
-  imagePreview.src = plant.image || "";
-  imagePreview.style.display = plant.image ? 'block' : 'none';
-  plantForm.style.display = "block";
-
-  isEditing = true;
-  editIndex = index;
-
-  savePlantButton.textContent = "Update Plant";
-}
-
-function deletePlant(index) {
-  const confirmed = confirm("Are you sure you want to delete this plant? This cannot be undone.");
-  if (confirmed) {
-    plants.splice(index, 1);
-    saveToLocalStorage();
-    renderPlantList();
-  }
-}
-
-function moveToGraveyard(index) {
-  const confirmed = confirm("Are you sure you want to move this plant to the graveyard?");
-  if (confirmed) {
-    // Add the selected plant to the graveyard
-    graveyardPlants.push(plants[index]);
-    saveToLocalStorage();
-
-    // Remove the plant from the main list
-    plants.splice(index, 1);
-    saveToLocalStorage();
-
-    renderPlantList();
-    renderGraveyardList();
-  }
-}
-
+// Function to save to localStorage
 function saveToLocalStorage() {
   localStorage.setItem("plants", JSON.stringify(plants));
   localStorage.setItem("graveyardPlants", JSON.stringify(graveyardPlants));
 }
 
-// Initial render on page load
+// Render initial plant list
 renderPlantList();
-renderGraveyardList();
