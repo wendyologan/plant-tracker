@@ -22,7 +22,7 @@ if (savePlantButton) {
     if (!plantName) {
       plantNameInput.classList.add("error");
       errorMessage.style.display = "block";
-      return; 
+      return; // This is correct as it's inside the event listener function
     }
 
     const savePlant = (base64Image) => {
