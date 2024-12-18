@@ -33,8 +33,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Image preview logic
-plantImageInput.addEventListener('change', function(event) {
+  // Image preview logic
+  document.addEventListener("DOMContentLoaded", () => {
+  // All the code that interacts with DOM elements
+
+  // Now safely access the plantImageInput element
+  const plantImageInput = document.getElementById("plant-image");
+  if (plantImageInput) {
+    plantImageInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const fileReader = new FileReader();
+
+      if (file) {
+        fileReader.onload = function(e) {
+          imagePreview.style.display = 'block';
+          imagePreview.src = e.target.result;
+        };
+        fileReader.readAsDataURL(file);
+      } else {
+        imagePreview.style.display = 'none';
+        imagePreview.src = '';
+      }
+    });
+  } else {
+    console.error('Element with id "plant-image" not found');
+  }
+});
   const file = event.target.files[0];
   const fileReader = new FileReader();
 
