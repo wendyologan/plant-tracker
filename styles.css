@@ -123,6 +123,16 @@ form input {
   background-color: #E6F0D5;
 }
 
+#error-message {
+  color: #D77C7C;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  margin-top: 0rem;
+  margin-left: 26%; /* Align it directly below the input field */
+  text-align: left;
+  display: none; /* Hide initially */
+}
+
 img {
   width: 90%;
 }
